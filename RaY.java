@@ -19,7 +19,7 @@ public class RaY extends World
     boolean scored=false;
     String me;
     GreenfootImage screen = new GreenfootImage(500,300);
-    Color flash = Color.white;
+    greenfoot.Color flash = greenfoot.Color.WHITE;
     DecimalFormat decimalFormat = new DecimalFormat("#.###");
     
     
@@ -33,13 +33,13 @@ public class RaY extends World
     
     public void act() 
     {
-        screen.setColor(new Color(color,0,0,alpha));
+        screen.setColor(new greenfoot.Color(color,0,0,alpha));
         screen.fillRect(0,0,500,300);
         count = count+speed;
         if(count>15){
-            flash = new Color(Greenfoot.getRandomNumber(200)+50,Greenfoot.getRandomNumber(200)+50,Greenfoot.getRandomNumber(200)+50);
+            flash = new greenfoot.Color(Greenfoot.getRandomNumber(200)+50,Greenfoot.getRandomNumber(200)+50,Greenfoot.getRandomNumber(200)+50);
             if(scored){
-                flash = new Color(Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(100));
+                flash = new greenfoot.Color(Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(100),Greenfoot.getRandomNumber(100));
             }
             count=0;
         }
@@ -48,37 +48,14 @@ public class RaY extends World
             scored=true;
             screen.setColor(flash);
             screen.drawString("Final score:  "+score,5,15);
-            screen.drawString("Fastest speed:  "+decimalFormat.format(speed),5,45);
-            if (speed <= 1)
-                {screen.drawString("That's slow.",5,60);
-                }
-            if (speed > 1 && speed < 2)
-                {screen.drawString("That's average.",5,60);
-                }
-            if (speed >= 2 && speed < 3){
-                screen.drawString("That's fast!",5,60);
-            }
-            if (speed >= 3){
-                screen.drawString("That's REALLY fast!",5,60);
-            }
-            screen.drawString("Click 'Reset' to play again.",5,75);
-            if (score <= 1000)
-                {screen.drawString("Keep trying.",5,30);
-                }
-            if (score > 1000 && score < 1300)
-                {screen.drawString("That was OK.",5,30);
-                }
-            if (score > 1300){
-                screen.drawString("Awesome!",5,30);
-            }
-            
+            screen.drawString("Final speed:  "+decimalFormat.format(speed),5,45);
             return;
         }
         
         
         
         
-        screen.setColor(new Color(70,70,70));
+        screen.setColor(new greenfoot.Color(70,70,70));
         x = 250+(int)(270*Math.atan2(40-offX,0));
         y = (int)(5000/Math.sqrt((40-offX)*(40-offX)));
         screen.drawLine(250,150,x,150-(int)(y/2)+(int)(.002*(250-x)*slant));
@@ -93,11 +70,12 @@ public class RaY extends World
         }
         
         
-        
+        // Display info. Each line is 12 pixels high.
         screen.setColor(flash);
         screen.drawString("Score: "+score,0,12);
         screen.drawString("Health: "+health,0,24);
         screen.drawString("Speed: "+decimalFormat.format(speed),0,36);
+        
         
         
         for(int f=0;f<30;f++){
@@ -145,12 +123,6 @@ public class RaY extends World
         
         screen.drawRect(240,290,20,10);
         
-        if(Greenfoot.isKeyDown("t") && alpha!=0){
-            alpha--;
-        }
-        if(Greenfoot.isKeyDown("y") && alpha!=255){
-            alpha++;
-        }
         
     } 
     
